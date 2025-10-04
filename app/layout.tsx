@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/utils/theme-provider";
 import StickyFooter from "@/components/common/footer";
 import { AppLayout } from "@/components/common/app-layout";
+import ScrollToTopButton from "@/components/common/scrollToTopButton";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -47,7 +48,6 @@ export const metadata: Metadata = {
     "learners",
     "collaboration",
   ],
-  // Base URL for resolving relative Open Graph / Twitter image paths
   metadataBase: new URL("https://helixque.com"),
   authors: [{ name: "Helixque Team" }],
   openGraph: {
@@ -83,26 +83,20 @@ export const metadata: Metadata = {
   robots: "index, follow",
   alternates: { canonical: "https://helixque.com" },
 
-  // ✅ Favicon setup using SVG + PNG (no .ico)
   icons: {
-    // Modern browsers will use the SVG; older/strict ones will take PNGs
     icon: [
       { url: "/logo.svg", type: "image/svg+xml" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    // iOS home screen — must be PNG
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    // Safari pinned tab (monochrome) — SVG mask is optional but nice to have
     other: [
       { rel: "mask-icon", url: "/logo.svg", color: "#0b0b0b" }
     ],
   },
 
-  // Android home screen support
   manifest: "/site.webmanifest",
 
-  // Browser UI color
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -115,6 +109,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <AppLayout>{children}</AppLayout>
           <StickyFooter />
+          <ScrollToTopButton />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
