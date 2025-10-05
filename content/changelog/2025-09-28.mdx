@@ -1,0 +1,34 @@
+---
+title: "Release v0.1"
+description: "Improved UI and Screen Sharing component"
+date: "2025-09-28"
+tags: ["UI fixes", "Performance enhancement"]
+version: "0.1"
+---
+
+- We moved from **Vercel** to **Netlify** due to the socket waking up issue
+- **Screen sharing** is parked for now to reduce the load on server as we are running on free resources
+- Improved **UI and Layout** enhanced stability for switching different users continuosly
+
+
+
+
+<Accordion type="multiple" collapsible="true" className="w-full not-prose">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Features</AccordionTrigger>
+    <AccordionContent className="flex flex-col gap-4 text-balance">
+      <ul className="list-disc space-y-2 pl-4">
+        <li>The typing status of the user has been updated</li>
+      </ul>
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Bug Fixes</AccordionTrigger>
+    <AccordionContent className="flex flex-col gap-4 text-balance">
+      <ul className="list-disc space-y-2 pl-4">
+        <li>Video switching and Audio switching states are fixed </li>
+        <li>Fixed the state population when we are switching to the next call user</li>
+      </ul>
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>

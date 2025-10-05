@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 import StickyFooter from "@/components/common/footer";
 import { Banner } from "@/components/utils/banner";
@@ -53,5 +54,20 @@ export default function Home() {
       
       <StickyFooter/>
     </>
+=======
+import { HeroSection } from "@/components/sections/hero";
+import { FeaturesSection } from "@/components/sections/features";
+import { CTASection } from "@/components/sections/cta";
+import { OpensourceSection } from "@/components/sections/opensource";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col">
+      <HeroSection />
+      <FeaturesSection />
+      <OpensourceSection/>
+      <CTASection />
+    </div>
+>>>>>>> 6bdcb071f8f981c2f992021d395030db71fccd29
   );
 }

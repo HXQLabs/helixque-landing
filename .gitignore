@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+bun.lock
 
 # testing
 /coverage
@@ -16,6 +17,13 @@
 # next.js
 /.next/
 /out/
+
+# lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
+deno.lock
 
 # production
 /build
@@ -39,3 +47,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# statically generated during postinstall
+.source/
