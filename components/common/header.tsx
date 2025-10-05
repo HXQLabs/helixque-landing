@@ -35,17 +35,17 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
 
   const HelixQueLogo = ({ showFullLogo = false }: { showFullLogo?: boolean }) => (
     <div className="text-foreground flex items-end gap-2.5 [&_svg]:h-5">
-      <img 
-        src="/logo.svg" 
-        alt="HelixQue Logo" 
-        width={20} 
-        height={20} 
+      <img
+        src="/logo.svg"
+        alt="HelixQue Logo"
+        width={20}
+        height={20}
         className="h-5 w-auto"
       />
       <div className="relative">
         <span className={`${showFullLogo ? 'block' : 'hidden sm:block'} font-heading text-lg leading-none font-semibold`}>HelixQue</span>
         <Badge
-          variant="secondary" 
+          variant="secondary"
           className={`${showFullLogo ? 'block' : 'hidden sm:block'} absolute -top-1 -right-1 translate-x-full text-[8px] px-0.5 py-0 h-auto`}
         >
           Beta
@@ -75,13 +75,13 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav 
-            className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex" 
+          <nav
+            className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex"
             aria-label="Main navigation"
           >
             <ul className="border-border/70 relative flex w-fit rounded-full border p-1 px-1">
               {navigationItems.map((item, index) => (
-                <li 
+                <li
                   key={item.href}
                   ref={(el) => {
                     navItemsRef.current[index] = el;
@@ -93,34 +93,33 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
                   }}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <Link 
-                    href={item.href} 
-                    className={`text-[13.5px] transition-all duration-300 ease-out relative ${
-                      item.isSpecial 
-                        ? "text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold" 
+                  <Link
+                    href={item.href}
+                    className={`text-[13.5px] transition-all duration-300 ease-out relative ${item.isSpecial
+                        ? "text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold"
                         : "text-muted-foreground hover:text-foreground"
-                    }`}
+                      }`}
                   >
                     {item.label}{item.isSpecial && " 🔥"}
                   </Link>
                 </li>
               ))}
               {/* Animated pill background */}
-              <motion.li 
+              <motion.li
                 className="bg-muted/80 absolute inset-0 my-1.5 rounded-full shadow-sm"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={
                   hoveredIndex !== null
                     ? {
-                        opacity: 1,
-                        scale: 1,
-                        left: `${pillStyle.left}px`,
-                        width: `${pillStyle.width}px`,
-                      }
+                      opacity: 1,
+                      scale: 1,
+                      left: `${pillStyle.left}px`,
+                      width: `${pillStyle.width}px`,
+                    }
                     : {
-                        opacity: 0,
-                        scale: 0.8,
-                      }
+                      opacity: 0,
+                      scale: 0.8,
+                    }
                 }
                 transition={{
                   type: "spring",
@@ -139,8 +138,8 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
             </Link>
             <div className="flex items-center gap-2">
               <SimpleThemeToggle className="h-[32px] px-2" />
-              <motion.button 
-                className="flex items-center justify-center w-8 h-8 transition-all duration-200 hover:opacity-70" 
+              <motion.button
+                className="flex items-center justify-center w-8 h-8 transition-all duration-200 hover:opacity-70"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -175,8 +174,8 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
           </div>
 
           {/* Navigation Buttons - Hidden on Mobile */}
-          <nav 
-            className="hidden md:flex items-center gap-3 text-sm font-medium" 
+          <nav
+            className="hidden md:flex items-center gap-3 text-sm font-medium"
             aria-label="Navigation actions"
           >
             <GithubStarButton />
@@ -192,7 +191,7 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
         {isMenuOpen && (
           <>
             {/* Overlay */}
-            <motion.div 
+            <motion.div
               className="fixed inset-0 top-16 z-40 md:hidden"
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
@@ -201,7 +200,7 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
             />
-            
+
             {/* Mobile Menu Dropdown */}
             <motion.div
               role="dialog"
@@ -223,20 +222,19 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
               <div className="px-3 py-4">
                 <div className="flex flex-col">
                   {navigationItems.map((item, index) => (
-                    <Link 
+                    <Link
                       key={item.href}
                       href={item.href}
-                      className={`py-3 px-4 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-muted/50 text-left ${
-                        item.isSpecial 
-                          ? "text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold" 
+                      className={`py-3 px-4 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-muted/50 text-left ${item.isSpecial
+                          ? "text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-semibold"
                           : "text-muted-foreground hover:text-foreground"
-                      }`}
+                        }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}{item.isSpecial && " 🔥"}
                     </Link>
                   ))}
-                  
+
                   {/* Mobile Navigation Buttons */}
                   <div className="flex flex-col gap-3 pt-4 mt-2 px-1">
                     <div className="flex items-center justify-center gap-4">

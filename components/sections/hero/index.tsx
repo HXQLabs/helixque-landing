@@ -32,8 +32,8 @@ export const HeroSection = () => {
         <div className="relative z-1 mx-auto max-w-3xl text-center">
           <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
             Professional networking for
-            <br/>
-          
+            <br />
+
             <LayoutGroup>
               <motion.span className="relative translate-x-0 flex gap-2 justify-center flex-wrap items-center" layout>
                 <TextRotate
@@ -90,7 +90,7 @@ export const HeroSection = () => {
                 </span>
               </Link>
             </div>
-           
+
           </div>
           <p className="text-muted-foreground text-xs mt-4">
             Free to start • No credit card required
@@ -100,8 +100,8 @@ export const HeroSection = () => {
           className="after:border-primary/20 after:bg-secondary pointer-events-none absolute top-[340px] h-[400px] w-full max-w-5xl overflow-hidden mask-[radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-y-0 before:-right-[200%] before:-left-[200%] before:h-[200%] before:bg-[radial-gradient(circle_at_bottom_center,var(--primary),transparent_90%)] before:opacity-25 after:absolute after:top-1/5 after:-left-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] after:border-t sm:top-[300px] sm:after:top-1/2"
           aria-hidden="true"
         >
-          <Particles 
-            variant="default" 
+          <Particles
+            variant="default"
             interactive={true}
             style={{
               color: "rgb(156 163 175)" // gray-400 - visible in both light and dark modes
