@@ -1,8 +1,12 @@
+<div align ="center">
+
+[![Helixque Repo Card](/public/HelixQue.png)](https://helixque.vercel.app/)
+
 # Helixque
 
-![Helixque Logo](https://helixque.vercel.app/logo.svg)
-
 > **Official landing page for [Helixque](https://helixque.vercel.app/)** - a professional networking platform where developers, designers, founders, and learners connect for instant matching based on skills, industry, and language.
+
+</div>
 
 ## Table of Contents
 
