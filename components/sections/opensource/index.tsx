@@ -4,10 +4,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { Heart } from "lucide-react";
 import { Icons } from '@/components/utils/icons';
-import { 
-  AvatarGroup, 
-  AvatarGroupTooltip, 
-  AvatarGroupTooltipArrow 
+import {
+  AvatarGroup,
+  AvatarGroupTooltip,
+  AvatarGroupTooltipArrow
 } from '@/components/animate-ui/primitives/animate/avatar-group';
 import { Button } from '@/components/ui/button';
 import { fetchAll, Repo as GhRepo, ContributorAPI as GhContributor, getRepo } from '@/lib/github';
@@ -119,10 +119,10 @@ export const OpensourceSection = () => {
     <section className="container mx-auto flex w-full max-w-5xl flex-col items-center justify-start !px-4 py-16 text-center md:py-32 bg-white dark:bg-neutral-950">
       <div className="flex flex-col items-center text-center">
         <h2 className="leading-tighter font-gilroy max-w-2xl bg-gradient-to-b from-neutral-900/80 via-neutral-900 to-neutral-900/60 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
-          Built by professionals, for professionals
+          Open Source & Community Driven
         </h2>
         <p className="text-muted-foreground text-base tracking-tight mt-4 max-w-2xl">
-          Join an early community of developers, designers, founders, and learners practicing together in a safe, structured environment. Share knowledge, grow your network, and improve with every conversation.
+          Built by professionals, for professionals. Join our open-source community of developers, designers, and founders who are shaping the future of professional networking through collaboration and innovation.
         </p>
 
         {/* Repo facts */}
@@ -194,15 +194,15 @@ export const OpensourceSection = () => {
             className="cursor-pointer inline-flex items-center justify-center gap-2 font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 py-3 sm:py-2 has-[>svg]:px-4 sm:has-[>svg]:px-3 h-10 sm:h-8 rounded-lg px-5 sm:px-4 text-sm sm:text-[13.5px] whitespace-nowrap shadow-[inset_0_1px_0_0_#FFFFFF20] w-full sm:w-auto"
           >
             <Icons.github className="w-4 h-4" />
-            Join Community
+            Star on GitHub
           </Button>
-          
+
           <Button
-            onClick={() => window.open("https://github.com/hxqlabs/helixque/fork", "_blank")}
+            onClick={() => window.open("https://helixque.netlify.app", "_blank")}
             className="cursor-pointer inline-flex items-center justify-center gap-2 font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-secondary text-secondary-foreground hover:bg-secondary/80 py-3 sm:py-2 has-[>svg]:px-4 sm:has-[>svg]:px-3 h-10 sm:h-8 rounded-lg px-5 sm:px-4 text-sm sm:text-[13.5px] whitespace-nowrap shadow-[inset_0_1px_0_0_#FFFFFF20] w-full sm:w-auto"
           >
             <Heart className="w-4 h-4" />
-            Network Now
+            Try Helixque
           </Button>
         </div>
       </div>

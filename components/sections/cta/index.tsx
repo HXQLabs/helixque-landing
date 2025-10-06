@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ChevronRight, Users, Activity} from "lucide-react";
+import { ChevronRight, Users, Activity } from "lucide-react";
 import { Icons } from '@/components/utils/icons';
 import { BorderBeam } from '@/components/ui/border-beam';
 import Link from "next/link";
@@ -39,17 +39,17 @@ export function CTASection() {
     <section className="px-4 py-8 md:py-12">
       <div className="bg-neutral-100 dark:bg-neutral-900 relative mx-auto max-w-6xl rounded-2xl border border-neutral-200 dark:border-neutral-800 px-4 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 min-h-[400px]">
-          
+
           {/* Left Content */}
           <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-6 lg:pl-12 lg:pr-8 h-full py-8 lg:py-12">
             <h2 className="leading-tighter font-gilroy max-w-2xl bg-gradient-to-b from-neutral-900/80 via-neutral-900 to-neutral-900/60 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-5xl xl:tracking-tighter mb-6 lg:mb-8">
-              Join the Community
+              Join Our Growing Community
             </h2>
             <p className="text-muted-foreground text-sm md:text-base tracking-tight max-w-xl lg:max-w-2xl mb-8 lg:mb-12">
-              Have suggestions or improvements? Share feedback, request features, and help us shape the roadmap.
+              Connect with developers, designers, and professionals worldwide. Share feedback, contribute to the project, and help shape the future of professional networking.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-              <Link 
+              <Link
                 href={`https://discord.gg/${process.env.NEXT_PUBLIC_DISCORD_INVITE_CODE}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,7 +59,7 @@ export function CTASection() {
                 Join Discord
                 <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover/cta-button:translate-x-1" />
               </Link>
-              <Link 
+              <Link
                 href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_REPO}/issues`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -75,7 +75,7 @@ export function CTASection() {
           <div className="flex items-center justify-center px-6 lg:px-8">
             <div className="relative bg-white dark:bg-neutral-800 rounded-2xl p-4 md:p-6 w-full max-w-sm shadow-lg">
               <BorderBeam size={100} duration={12} delay={0} colorFrom="#5865f2" colorTo="#7289da" borderWidth={2} />
-              
+
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#5865f2] flex items-center justify-center">
                   <Icons.discord className="w-5 h-5 md:w-6 md:h-6 text-white" />
