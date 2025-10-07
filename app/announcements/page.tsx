@@ -65,7 +65,7 @@ export default function AnnouncementsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pt-12 sm:pt-16 pb-16 sm:pb-20">
         <div className="relative">
           {/* Vertical timeline line - positioned outside the loop for better alignment */}
-          <div className="hidden md:block absolute left-48 top-0 w-px bg-border" style={{ height: 'calc(100% - 2rem)' }} />
+          <div className="hidden md:block absolute left-48 top-0 bottom-0 w-px bg-border" />
           
           {sortedAnnouncements.map((announcement, index) => {
             const MDX = announcement.data.body
