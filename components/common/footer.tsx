@@ -50,7 +50,7 @@ const StickyFooter = () => {
         {/* Main Grid */}
         <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 items-start">
           {/* Brand Section */}
-          <div className="flex flex-col gap-6 ml-30">
+          <div className="flex flex-col gap-6 ml-24">
             <Link
               href="#hero"
               className="flex items-center gap-2 group"
@@ -70,9 +70,9 @@ const StickyFooter = () => {
           </div>
 
           {/* Useful Links */}
-          <div className="flex flex-col gap-5 sm:col-span-1 lg:col-span-1 ml-29">
+          <div className="flex flex-col gap-5 sm:col-span-1 lg:col-span-1 ml-28">
             <h3 className="text-lg font-semibold mb-1">Useful Links</h3>
-            <ul className="space-y- text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               {footerLinks.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -93,7 +93,7 @@ const StickyFooter = () => {
           {/* Support Section */}
           <div className="flex flex-col gap-3 md:-ml-3">
             <h3 className="text-lg font-semibold mb-1">Support</h3>
-            <div className="flex flex-col items-center md:-ml-73 sm:items-start">
+            <div className="flex flex-col items-center md:-ml-40 sm:items-start">
               <BuyMeCoffee />
             </div>
           </div>
