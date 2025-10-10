@@ -30,27 +30,26 @@ export const HeroSection = () => {
 
         </div>
         <div className="relative z-1 mx-auto max-w-3xl text-center">
-          <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
-            Professional networking for
-            <br/>
-          
-            <LayoutGroup>
-              <motion.span className="relative translate-x-0 flex gap-2 justify-center flex-wrap items-center" layout>
-                <TextRotate
-                  texts={words}
-                  mainClassName="text-white dark:text-black px-3 bg-black dark:bg-white overflow-hidden py-1.5 justify-center rounded-lg"
-                  staggerFrom={"last"}
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  exit={{ y: "-120%" }}
-                  staggerDuration={0.025}
-                  splitLevelClassName="pb-0.5"
-                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={3000}
-                />
-              </motion.span>
-            </LayoutGroup>
+          <h1
+            className="leading-snug font-gilroy max-w-2xl mx-auto 
+            bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 
+            dark:from-white/80 dark:via-white dark:to-white/60 
+            bg-clip-text text-4xl sm:text-5xl md:text-5xl 
+            font-semibold tracking-tight text-pretty text-transparent 
+            lg:leading-[1.2] xl:text-6xl/[4rem] xl:tracking-tighter"
+          >
+            Professional networking for<br/>
+            <span className="relative mt-1 flex gap-2 justify-center flex-wrap items-baseline">
+              <p
+                className="flex flex-wrap items-baseline whitespace-pre-wrap 
+                text-white dark:text-black px-3 bg-black dark:bg-white 
+                overflow-hidden py-1.5 justify-center rounded-lg"
+              >
+                builders
+              </p>
+            </span>
           </h1>
+
           <p className="text-gray-600 dark:text-muted-foreground mx-auto mt-6 leading-7 font-normal text-balance sm:w-[660px] sm:text-[18px] md:mt-8">
             Match instantly by <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong>. Learn, mentor, and collaborate through text or video without the awkwardness.
           </p>
