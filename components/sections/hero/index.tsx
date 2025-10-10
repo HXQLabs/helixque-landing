@@ -31,7 +31,7 @@ export const HeroSection = () => {
         </div>
         <div className="relative z-1 mx-auto max-w-3xl text-center">
           <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
-            Professional networking for
+            Real-time professional networking for
             <br/>
           
             <LayoutGroup>
@@ -52,7 +52,7 @@ export const HeroSection = () => {
             </LayoutGroup>
           </h1>
           <p className="text-gray-600 dark:text-muted-foreground mx-auto mt-6 leading-7 font-normal text-balance sm:w-[660px] sm:text-[18px] md:mt-8">
-            Match instantly by <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong>. Learn, mentor, and collaborate through text or video without the awkwardness.
+            Helixque matches you by <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong>—then gets you talking fast. Practice interviews, mentor, or collaborate via text or video. No cold outreach, no awkwardness.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-x-6">
             <div className="flex items-center gap-x-4">
@@ -62,12 +62,12 @@ export const HeroSection = () => {
                 aria-label="Get started with Helixque"
                 className="from-primary/90 to-primary durration-300 text-primary-foreground flex h-10 items-center rounded-3xl bg-linear-to-t px-6 text-sm font-medium shadow-[inset_0_1px_0_0_#FFFFFF20] transition-colors"
               >
-                Get Started for Free
+                Try Helixque Free
               </Link>
               <Link
-                href="https://github.com/orgs/HXQLabs/repositories"
+                href="https://github.com/HXQLabs/helixque"
                 className="text-foreground group/hero flex items-center gap-1 text-sm leading-none font-medium"
-                aria-label="Learn more about professional networking"
+                aria-label="Star the Helixque repo"
               >
                 Star on GitHub{' '}
                 <span aria-hidden="true">
