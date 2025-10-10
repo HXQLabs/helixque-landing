@@ -16,6 +16,7 @@ export default function GithubSectionButton() {
       <Link
         href="https://github.com/badtzx0/badtz-ui"
         target="_blank"
+        rel="noopener noreferrer"
         onClick={() => {
           if (typeof window !== "undefined" && window.datafast) {
             window.datafast("clicked_github_from_section")

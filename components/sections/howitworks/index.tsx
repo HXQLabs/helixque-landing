@@ -70,6 +70,7 @@ export const HowItWorksSection = () => {
         <Link
           href="https://helixque.netlify.app"
           target="_blank"
+          rel="noopener noreferrer"
           className="from-primary/90 to-primary text-primary-foreground flex h-10 items-center rounded-3xl bg-linear-to-t px-6 text-sm font-medium shadow-[inset_0_1px_0_0_#FFFFFF20] transition-colors"
           aria-label="Get started with Helixque"
         >
@@ -78,6 +79,7 @@ export const HowItWorksSection = () => {
         <Link
           href="https://github.com/HXQLabs/helixque"
           target="_blank"
+          rel="noopener noreferrer"
           className="text-foreground group flex items-center gap-1 text-sm font-medium"
           aria-label="Star Helixque on GitHub"
         >
