@@ -10,6 +10,7 @@ export function DiscordButton({ className }: { className?: string }) {
   return (
     <Link
       target="_blank"
+      rel="noopener noreferrer"
       href="https://discord.gg/dQUh6SY9Uk" // Replace with your actual Discord invite
       onClick={() => {
         if (typeof window !== "undefined" && window.datafast) {
