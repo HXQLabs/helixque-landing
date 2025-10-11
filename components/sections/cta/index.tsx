@@ -1,12 +1,39 @@
 "use client";
-import React from "react";
-import { ChevronRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ChevronRight, Users, Activity} from "lucide-react";
 import { Icons } from '@/components/utils/icons';
 import { BorderBeam } from '@/components/ui/border-beam';
 import Link from "next/link";
 
 export function CTASection() {
-  
+  const [serverData, setServerData] = useState<any>(null);
+  const [error, setError] = useState(false);
+  const hasRequiredEnvVars = process.env.NEXT_PUBLIC_DISCORD_INVITE_CODE && process.env.NEXT_PUBLIC_GITHUB_REPO;
+
+  useEffect(() => {
+    if (!hasRequiredEnvVars) {
+      setError(true);
+      return;
+    }
+    async function fetchData() {
+      try {
+        const res = await fetch("/api/discord");
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setServerData(data);
+        setError(false);
+      } catch (err) {
+        console.error("Error fetching Discord data:", err);
+        setError(true);
+      }
+    }
+    fetchData();
+  }, []);
+
 
   return (
     <section className="px-4 py-8 md:py-12">
@@ -19,11 +46,11 @@ export function CTASection() {
               Join the Community
             </h2>
             <p className="text-muted-foreground text-sm md:text-base tracking-tight max-w-xl lg:max-w-2xl mb-8 lg:mb-12">
-              Star the repo, join our Discord, and contribute ideas or code. Help shape a better way to learn, mentor, and collaborate.
+              Have suggestions or improvements? Share feedback, request features, and help us shape the roadmap.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <Link 
-                href="https://discord.gg/dQUh6SY9Uk"
+                href={`https://discord.gg/${process.env.NEXT_PUBLIC_DISCORD_INVITE_CODE}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group/cta-button bg-[#5865f2] text-white hover:bg-[#4752c4] font-medium flex h-10 items-center justify-center gap-2 rounded-full px-6 text-sm shadow-none transition-colors duration-300 w-full sm:w-auto"
@@ -33,61 +60,67 @@ export function CTASection() {
                 <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover/cta-button:translate-x-1" />
               </Link>
               <Link 
-                href="https://github.com/orgs/HXQLabs/repositories"
+                href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_REPO}/issues`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group/cta-button bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-white hover:bg-neutral-300 dark:hover:bg-neutral-600 font-medium flex h-10 items-center justify-center gap-2 rounded-full px-6 text-sm shadow-none transition-colors duration-300 w-full sm:w-auto"
               >
                 <Icons.github className="w-4 h-4" />
-                Explore Repos
-              </Link>
-              <Link 
-                href="https://helixque.netlify.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/cta-button bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-white hover:bg-neutral-300 dark:hover:bg-neutral-600 font-medium flex h-10 items-center justify-center gap-2 rounded-full px-6 text-sm shadow-none transition-colors duration-300 w-full sm:w-auto"
-              >
-                Start Free
+                Report Issues
               </Link>
             </div>
           </div>
 
-          {/* Right Info Card */}
+          {/* Right Server Info */}
           <div className="flex items-center justify-center px-6 lg:px-8">
             <div className="relative bg-white dark:bg-neutral-800 rounded-2xl p-4 md:p-6 w-full max-w-sm shadow-lg">
               <BorderBeam size={100} duration={12} delay={0} colorFrom="#5865f2" colorTo="#7289da" borderWidth={2} />
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#5865f2] flex items-center justify-center">
                   <Icons.discord className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm md:text-base">Get involved</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Community & contribution</p>
+                  <h3 className="font-semibold text-foreground text-sm md:text-base">
+                    {error ? "Connection Error" : (serverData?.guild.name || "Loading...")}
+                  </h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">Official Discord</p>
                 </div>
               </div>
 
-              <div className="space-y-3 text-left">
-                <div className="flex items-start gap-2">
-                  <span className="mt-1 text-[#5865f2]">★</span>
-                  <p className="text-sm text-muted-foreground">Star the project on GitHub to support development.</p>
+              {error ? (
+                <div className="py-8 text-center">
+                  <p className="text-sm text-muted-foreground">Failed to fetch server data</p>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="mt-1 text-[#5865f2]">💬</span>
-                  <p className="text-sm text-muted-foreground">Join Discord to share ideas and meet collaborators.</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="mt-1 text-[#5865f2]">🛠️</span>
-                  <p className="text-sm text-muted-foreground">Pick an issue or read the Contributing Guide to get started.</p>
-                </div>
-              </div>
+              ) : (
+                <>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-3 h-3 md:w-4 md:h-4 text-green-500" />
+                        <span className="text-xs md:text-sm text-muted-foreground">Online Members</span>
+                      </div>
+                      <span className="font-semibold text-foreground text-xs md:text-sm">{serverData?.approximate_presence_count || "-"}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Activity className="w-3 h-3 md:w-4 md:h-4 text-blue-500" />
+                        <span className="text-xs md:text-sm text-muted-foreground">Total Members</span>
+                      </div>
+                      <span className="font-semibold text-foreground text-xs md:text-sm">{serverData?.approximate_member_count || "-"}</span>
+                    </div>
+                  </div>
 
-              <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-600 flex items-center gap-3">
-                <Link href="https://github.com/HXQLabs/helixque" target="_blank" className="text-xs underline">Repo</Link>
-                <span className="text-neutral-400">•</span>
-                <Link href="https://github.com/HXQLabs/helixque/issues" target="_blank" className="text-xs underline">Issues</Link>
-                <span className="text-neutral-400">•</span>
-                <Link href="https://github.com/HXQLabs/helixque-landing/blob/main/CONTRIBUTING.md" target="_blank" className="text-xs underline">Contributing</Link>
-              </div>
+                  {serverData && (
+                    <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-600">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-xs text-muted-foreground">Server is active</span>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
