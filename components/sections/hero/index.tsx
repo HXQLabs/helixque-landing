@@ -30,12 +30,14 @@ export const HeroSection = () => {
 
         </div>
         <div className="relative z-1 mx-auto max-w-3xl text-center">
-          <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
-            Real-time professional networking for
-            <br/>
-          
+          <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter flex flex-col items-center space-y-2">
+            <span>Professional networking for</span>
+            
             <LayoutGroup>
-              <motion.span className="relative translate-x-0 flex gap-2 justify-center flex-wrap items-center" layout>
+              <motion.span
+                className="relative translate-x-0 flex gap-2 justify-center flex-wrap items-center"
+                layout
+              >
                 <TextRotate
                   texts={words}
                   mainClassName="text-white dark:text-black px-3 bg-black dark:bg-white overflow-hidden py-1.5 justify-center rounded-lg"
@@ -51,6 +53,7 @@ export const HeroSection = () => {
               </motion.span>
             </LayoutGroup>
           </h1>
+
           <p className="text-gray-600 dark:text-muted-foreground mx-auto mt-6 leading-7 font-normal text-balance sm:w-[660px] sm:text-[18px] md:mt-8">
             Helixque matches you by <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong>—then gets you talking fast. Practice interviews, mentor, or collaborate via text or video. No cold outreach, no awkwardness.
           </p>
