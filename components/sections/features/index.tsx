@@ -383,10 +383,10 @@ export const FeaturesSection = () => {
   <section className="container mx-auto flex w-full max-w-5xl flex-col items-center justify-start px-2 sm:px-4 py-16 text-center md:py-32 overflow-hidden">
     <div className="flex flex-col items-center text-center">
             <h2 className="leading-tighter font-gilroy max-w-2xl bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter">
-        Grow Your Career
+        What you can do with Helixque
       </h2>
       <p className="text-muted-foreground text-base tracking-tight mt-4 max-w-2xl">
-        Skip cold outreach. Set your skills and preferences, get matched in seconds, and have meaningful conversations mock interviews, mentoring, code reviews, or pitch practice.
+        Set your preferences once—Helixque finds the right peers for learning, mentoring, mock interviews, code reviews, portfolio critique, and pitch practice.
       </p>
     </div>
 
@@ -397,9 +397,9 @@ export const FeaturesSection = () => {
         <CursorCard borderColor={theme === "dark" ? "#262626" : "#e5e5e5"} className="h-full md:w-[45%] w-full rounded-xl p-2 sm:p-4 md:p-7 shadow-md bg-white dark:bg-neutral-950 border-gray-200 dark:border-neutral-800 overflow-hidden">
           <div className="h-full flex flex-col">
             <div className="mb-4 text-left">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Global Professional Network</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Smart, global matching</h3>
               <p className="text-muted-foreground text-sm">
-                Connect with professionals worldwide based on your <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong> for meaningful global collaboration.
+                Get paired with peers worldwide by <strong>skills</strong>, <strong>industry</strong>, and <strong>language</strong>. Collaborate across time zones and backgrounds.
               </p>
             </div>
             <div className="flex-1 relative overflow-hidden rounded-lg min-h-[200px]">
@@ -412,9 +412,9 @@ export const FeaturesSection = () => {
         <CursorCard borderColor={theme === "dark" ? "#262626" : "#e5e5e5"} className="h-full md:w-[55%] w-full rounded-xl p-4 sm:p-7 shadow-md bg-white dark:bg-neutral-950 border-gray-200 dark:border-neutral-800 overflow-hidden">
         <div className="h-full flex flex-col">
             <div className="mb-4 text-left">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Simple & Secure Signup</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Simple, privacy-first onboarding</h3>
                 <p className="text-muted-foreground text-sm">
-                  Securely connect with LinkedIn, stay anonymous to matches. No lengthy forms, no spam - just real professional networking.
+                  One-click signup, optional LinkedIn verification, and anonymous-by-default matching. No long forms. No spam.
                 </p>
             </div>
             <div className="flex-1 relative overflow-hidden rounded-lg min-h-[240px]">
@@ -430,9 +430,9 @@ export const FeaturesSection = () => {
         <CursorCard borderColor={theme === "dark" ? "#262626" : "#e5e5e5"} className="h-full md:w-[55%] w-full rounded-xl p-4 sm:p-7 shadow-md bg-white dark:bg-neutral-950 border-gray-200 dark:border-neutral-800 overflow-hidden">
           <div className="h-full flex flex-col">
             <div className="mb-4 text-left">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Professional Networking Sessions</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Sessions that accelerate growth</h3>
               <p className="text-muted-foreground text-sm">
-                Mock interviews (behavioral & technical), pair programming, portfolio critique, and startup pitch practice with feedback etc.
+                Practice behavioral and technical interviews, pair program, get portfolio feedback, or rehearse startup pitches with real-time guidance.
               </p>
             </div>
             <div className="flex-1 relative overflow-hidden rounded-lg min-h-[200px]">
@@ -445,8 +445,8 @@ export const FeaturesSection = () => {
         <CursorCard borderColor={theme === "dark" ? "#262626" : "#e5e5e5"} className="h-full md:w-[45%] w-full rounded-xl p-4 md:p-7 shadow-md bg-white dark:bg-neutral-950 border-gray-200 dark:border-neutral-800 overflow-hidden">
           <div className="h-full flex flex-col">
             <div className="mb-3 md:mb-4 text-left">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-1 md:mb-2">Conversations that matter</h3>
-              <p className="text-muted-foreground text-xs md:text-sm">Real time chats for meaningful conversations.</p>
+              <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-1 md:mb-2">Real-time conversations</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">Start in chat, switch to video when ready. Designed for focus and momentum.</p>
             </div>
             <div className="flex-1 flex flex-col rounded-lg overflow-hidden relative">
               <div className="flex-1 p-3 md:p-4 space-y-4 md:space-y-6 overflow-y-auto min-h-0">

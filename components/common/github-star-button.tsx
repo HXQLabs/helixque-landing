@@ -57,6 +57,7 @@ export function GithubStarButton({ className }: { className?: string }) {
     >
       <Link
         target="_blank"
+        rel="noopener noreferrer"
         href="https://github.com/HXQLabs/helixque"
         onMouseEnter={() => {
           setIsStarHovered(true)
