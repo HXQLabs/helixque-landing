@@ -1,13 +1,14 @@
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Color, MeshStandardMaterial, DoubleSide, Euler } from 'three';
+// ✨ FIX: Import all necessary classes directly from 'three'
+import { Color, MeshStandardMaterial, DoubleSide, Euler, Mesh, Shape, ShapeGeometry } from 'three';
 
 interface Leaf3DProps {
   initialPosition: [number, number, number];
   speed: number;
   rotationSpeed: number;
   windForce: number;
-  ground: number; // Y-coordinate where leaves "land" or reset
+  ground: number;
   boundary: {
     x: [number, number];
     z: [number, number];
@@ -23,21 +24,22 @@ const leafColors = [
 ];
 
 export function Leaf3D({ initialPosition, speed, rotationSpeed, windForce, ground, boundary }: Leaf3DProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
+  // ✨ FIX: Use the imported 'Mesh' type for the ref
+  const meshRef = useRef<Mesh>(null);
   const color = useMemo(() => leafColors[Math.floor(Math.random() * leafColors.length)], []);
   const material = useMemo(() => new MeshStandardMaterial({ color, side: DoubleSide }), [color]);
 
-  // Leaf geometry (a simple flat shape)
   const geometry = useMemo(() => {
-    const shape = new THREE.Shape();
-    const width = 0.5 + Math.random() * 0.3; // Randomize width
-    const height = 0.7 + Math.random() * 0.4; // Randomize height
+    // ✨ FIX: Use the imported 'Shape' and 'ShapeGeometry' classes directly
+    const shape = new Shape();
+    const width = 0.5 + Math.random() * 0.3;
+    const height = 0.7 + Math.random() * 0.4;
 
     shape.moveTo(0, height / 2);
     shape.bezierCurveTo(width / 2, height / 2 * 0.8, width / 2, -height / 2 * 0.8, 0, -height / 2);
     shape.bezierCurveTo(-width / 2, -height / 2 * 0.8, -width / 2, height / 2 * 0.8, 0, height / 2);
 
-    return new THREE.ShapeGeometry(shape);
+    return new ShapeGeometry(shape);
   }, []);
 
   useFrame((state, delta) => {
@@ -59,15 +61,16 @@ export function Leaf3D({ initialPosition, speed, rotationSpeed, windForce, groun
     if (meshRef.current.position.y < ground) {
       meshRef.current.position.set(
         Math.random() * (boundary.x[1] - boundary.x[0]) + boundary.x[0],
-        initialPosition[1] + Math.random() * 5, // Reset higher up
+        initialPosition[1] + Math.random() * 5,
         Math.random() * (boundary.z[1] - boundary.z[0]) + boundary.z[0]
       );
       meshRef.current.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
-      meshRef.current.scale.setScalar(0.8 + Math.random() * 0.4); // Randomize scale on reset
-      meshRef.current.material = new MeshStandardMaterial({
-        color: leafColors[Math.floor(Math.random() * leafColors.length)],
-        side: DoubleSide
-      });
+      meshRef.current.scale.setScalar(0.8 + Math.random() * 0.4);
+      
+      // ✨ FIX: Instead of creating a new material, reuse the existing one and just change its color.
+      // This prevents a major memory leak and improves performance.
+      const existingMaterial = meshRef.current.material as MeshStandardMaterial;
+      existingMaterial.color.set(leafColors[Math.floor(Math.random() * leafColors.length)]);
     }
   });
 
@@ -76,7 +79,7 @@ export function Leaf3D({ initialPosition, speed, rotationSpeed, windForce, groun
       ref={meshRef}
       position={initialPosition}
       rotation={new Euler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2)}
-      scale={[0.8 + Math.random() * 0.4, 0.8 + Math.random() * 0.4, 1]} // Randomize initial scale
+      scale={[0.8 + Math.random() * 0.4, 0.8 + Math.random() * 0.4, 1]}
       material={material}
       geometry={geometry}
     />
