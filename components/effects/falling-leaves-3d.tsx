@@ -2,7 +2,7 @@
 
 import React, { Suspense, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei'; // OrbitControls is useful for debugging
+import { Environment } from '@react-three/drei';
 import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
 import { Leaf3D } from './leaf-3d';
 
@@ -11,21 +11,20 @@ interface FallingLeaves3DProps {
 }
 
 export function FallingLeaves3D({ count = 50 }: FallingLeaves3DProps) {
+  // All hooks must be called at the top level, before any returns.
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  // Disable 3D animation if reduced motion is preferred
-  if (prefersReducedMotion) {
-    return null;
-  }
-
   const leaves = useMemo(() => {
-    const numLeaves = window.innerWidth < 768 ? Math.floor(count / 2) : count; // Fewer leaves on mobile
+    // ✨ FIX: Check if `window` exists to prevent errors during server-side rendering.
+    const effectiveWidth = typeof window !== "undefined" ? window.innerWidth : 1024;
+    const numLeaves = effectiveWidth < 768 ? Math.floor(count / 2) : count;
+    
     return Array.from({ length: numLeaves }).map((_, i) => ({
       id: i,
       initialPosition: [
-        Math.random() * 20 - 10, // X: -10 to 10
-        Math.random() * 20 + 5,  // Y: 5 to 25 (start above view)
-        Math.random() * 10 - 5   // Z: -5 to 5
+        Math.random() * 20 - 10,
+        Math.random() * 20 + 5,
+        Math.random() * 10 - 5
       ] as [number, number, number],
       speed: 0.5 + Math.random() * 0.5,
       rotationSpeed: 0.5 + Math.random() * 0.5,
@@ -33,19 +32,24 @@ export function FallingLeaves3D({ count = 50 }: FallingLeaves3DProps) {
     }));
   }, [count]);
 
+  // ✨ FIX: The `if` check is now moved *after* all hooks have been called.
+  if (prefersReducedMotion) {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 15], fov: 75 }}
         style={{ background: 'transparent' }}
-        gl={{ antialias: true }}
+        // ✨ FIX: Added `dpr` prop for performance optimization on high-res screens.
+        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
       >
         <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} castShadow />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
-        <Environment preset="forest" /> {/* Provides natural lighting */}
-
-        {/* <OrbitControls /> Uncomment for debugging: lets you move the camera with mouse */}
+        <Environment preset="forest" />
 
         <Suspense fallback={null}>
           {leaves.map((leaf) => (
@@ -55,8 +59,8 @@ export function FallingLeaves3D({ count = 50 }: FallingLeaves3DProps) {
               speed={leaf.speed}
               rotationSpeed={leaf.rotationSpeed}
               windForce={leaf.windForce}
-              ground={-10} // Leaves disappear/reset below this Y value
-              boundary={{ x: [-15, 15], z: [-10, 10] }} // Area where leaves can spawn
+              ground={-10}
+              boundary={{ x: [-15, 15], z: [-10, 10] }}
             />
           ))}
         </Suspense>
