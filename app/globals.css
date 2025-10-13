@@ -349,6 +349,22 @@
   0%   { background-position: 200% 0%; }
   100% { background-position: -100% 0%; }
 }
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 0px rgba(255, 165, 0, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px 10px rgba(255, 165, 0, 0.4);
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-glow {
+  border-radius: 9999px; /* Ensures the glow effect is rounded */
+  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
+  animation: pulse-glow 4s infinite ease-in-out;
+}
 
 /* Custom Instrument Font Classes */
 .instrument-sans {
