@@ -130,15 +130,16 @@ export function Particles({
   customOptions = {},
 }: ParticlesProps) {
   const [isInitialized, setIsInitialized] = useState(false);
-  const { theme } = useTheme();
-const [particleColor, setParticleColor] = useState("#000000");
-useEffect(() => {
-  if (theme === "dark") {
-    setParticleColor("#FFFFFF"); // white for dark mode
-  } else {
-    setParticleColor("#000000"); // black for light mode
-  }
-}, [theme]);
+  const { resolvedTheme, theme } = useTheme();
+  const [particleColor, setParticleColor] = useState("#000000");
+  useEffect(() => {
+    const activeTheme = resolvedTheme || theme;
+    if (activeTheme === "dark") {
+     setParticleColor("#FFFFFF"); // white for dark mode
+    } else {
+      setParticleColor("#000000"); // black for light mode
+    }
+  }, [resolvedTheme, theme]);
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine)
