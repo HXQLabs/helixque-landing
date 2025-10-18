@@ -6,7 +6,7 @@ import {
   Particles as TSParticles,
 } from "@tsparticles/react"
 import { loadSlim } from "@tsparticles/slim"
-
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 type ParticleVariant = "default" | "snow" | "stars"
@@ -129,8 +129,16 @@ export function Particles({
   interactive = true,
   customOptions = {},
 }: ParticlesProps) {
-  const [isInitialized, setIsInitialized] = useState(false)
-
+  const [isInitialized, setIsInitialized] = useState(false);
+  const { theme } = useTheme();
+const [particleColor, setParticleColor] = useState("#000000");
+useEffect(() => {
+  if (theme === "dark") {
+    setParticleColor("#FFFFFF"); // white for dark mode
+  } else {
+    setParticleColor("#000000"); // black for light mode
+  }
+}, [theme]);
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine)
@@ -142,7 +150,7 @@ export function Particles({
   const id = useId()
 
   const baseStyle = variantStyles[variant]
-  const finalStyle = { ...baseStyle, ...style }
+const finalStyle = { ...baseStyle, ...style, color: particleColor }
 
   const defaultOptions = {
     detectRetina: true,

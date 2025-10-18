@@ -99,16 +99,13 @@ export const HeroSection = () => {
             Free to start • No credit card required
           </p>
         </div>
-        <div
+         <div
           className="after:border-primary/20 after:bg-secondary pointer-events-none absolute top-[340px] h-[400px] w-full max-w-5xl overflow-hidden mask-[radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-y-0 before:-right-[200%] before:-left-[200%] before:h-[200%] before:bg-[radial-gradient(circle_at_bottom_center,var(--primary),transparent_90%)] before:opacity-25 after:absolute after:top-1/5 after:-left-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] after:border-t sm:top-[300px] sm:after:top-1/2"
           aria-hidden="true"
         >
           <Particles 
-            variant="default" 
-            interactive={true}
-            style={{
-              color: "rgb(156 163 175)" // gray-400 - visible in both light and dark modes
-            }}
+           variant="default" 
+           interactive={true}
           />
         </div>
         <figure className="hidden sm:block relative max-w-6xl mx-auto p-1 sm:p-3 md:p-4 lg:p-6 backdrop-blur-lg dark:bg-white/5 bg-black/5 rounded-lg transition-colors duration-300 before:absolute before:inset-0 before:bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.03)_25%,rgba(0,0,0,0.03)_50%,transparent_50%,transparent_75%,rgba(0,0,0,0.03)_75%)] dark:before:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.03)_25%,rgba(255,255,255,0.03)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.03)_75%)] before:[background-size:8px_8px] before:rounded-lg before:pointer-events-none mt-12 sm:mt-14 md:mt-16 w-full border-0 shadow-xs lg:mt-28">
