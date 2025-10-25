@@ -35,7 +35,7 @@ export function Banner({
   message,
   href = 'https://pro.ui-layouts.com',
   target = '_blank',
-  height,
+  height = 'min(3rem, 8vh)', // Default to viewport-relative height with min constraint
   ...props
 }: BannerProps): React.ReactElement {
   const [open, setOpen] = useState(true);
@@ -62,7 +62,7 @@ export function Banner({
       {...props}
       style={{ height: open ? height : '0' }}
       className={cn(
-        'relative z-50 flex flex-row font-mono items-center justify-center px-4 text-center text-sm font-medium transition-all duration-300',
+        'relative z-50 flex flex-row font-mono items-center justify-center px-2 sm:px-4 py-1.5 sm:py-2 text-center text-xs sm:text-sm font-medium transition-all duration-300 min-h-[2.5rem] sm:min-h-[3rem]',
         variant === 'rainbow' && ' ',
         'dark:bg-zinc-950 bg-zinc-50',
         !open && 'hidden',

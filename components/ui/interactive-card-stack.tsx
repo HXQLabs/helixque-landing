@@ -59,7 +59,7 @@ const cards = [
   },
 ];
 
-const CARD_HEIGHT = 70; // px, adjust to match your h-16 + gap
+const CARD_HEIGHT = 70; // fallback px
 
 function HoverTranslateTwo() {
   const [active, setActive] = useState(2); // Start with the middle card
@@ -74,11 +74,8 @@ function HoverTranslateTwo() {
     if (active > 0) setActive(active - 1);
   };
 
-  const containerHeight = 350;
-  // grab middle pos
-  const middlePos = containerHeight / 2;
-  // center the card in the middle of container, but then move up a bit
-  const translateY = middlePos - active * CARD_HEIGHT - 35;
+  // Use responsive container height via CSS; compute translate in rems based on CARD_HEIGHT
+  const translateY = `calc(50% - ${active * (CARD_HEIGHT / 16)}rem - 2rem)`; // fallback approximation
 
   return (
     <>
@@ -88,9 +85,9 @@ function HoverTranslateTwo() {
         onMouseLeave={handleMouseLeave}
       >
         <div
-          className="flex flex-col gap-4 transition-transform duration-300 ease-in-out w-full -mt-10 overflow-visible  items-center justify-center"
+          className="flex flex-col gap-4 transition-transform duration-300 ease-in-out w-full -mt-10 overflow-visible items-center justify-center"
           style={{
-            transform: `translateY(${translateY}px)`,
+            transform: `translateY(${translateY})`,
             backfaceVisibility: "hidden",
           }}
         >
@@ -100,13 +97,9 @@ function HoverTranslateTwo() {
               <div
                 key={card.id}
                 className={`
-                  h-16 w-[275px] flex items-center justify-between gap-4 rounded-xl pl-3.5 pr-4 text-sm 
+                  h-16 max-w-[85%] w-[275px] sm:w-[320px] md:w-[380px] lg:w-[420px] flex items-center justify-between gap-4 rounded-xl pl-3.5 pr-4 text-sm 
                   transition duration-300 ease-in-out 
-                  ${
-                    isCenter
-                      ? "scale-[1.00] blur-none z-[99"
-                      : "scale-95 blur-[2px] opacity-60"
-                  }
+                  ${isCenter ? 'scale-100 z-50' : 'scale-95 blur-[2px] opacity-60'}
                 `}
                 style={{
                   background:

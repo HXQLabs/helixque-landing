@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils"
 interface CursorCardsContainerProps {
   children: React.ReactNode
   className?: string
-  proximityRange?: number
+  proximityRange?: number | string // Allow both pixel numbers and CSS unit strings
 }
 
 interface CursorCardProps {
   children?: React.ReactNode
   className?: string
-  illuminationRadius?: number
+  illuminationRadius?: number | string // Allow both pixels and CSS units
   illuminationColor?: string
   illuminationOpacity?: number
   primaryHue?: string
@@ -91,7 +91,8 @@ function useCardActivation(
     }
 
     const rect = elementRef.current.getBoundingClientRect()
-    const extendedProximity = 100
+    // Use relative proximity based on element size
+    const extendedProximity = Math.min(rect.width, rect.height) * 0.2
 
     const isNearCard =
       globalMouseX >= rect.left - extendedProximity &&
@@ -123,9 +124,14 @@ function useCardActivation(
 export function CursorCardsContainer({
   children,
   className,
-  proximityRange = 400,
-}: CursorCardsContainerProps) {
-  const { wrapperRef, mouseState } = useMousePosition(proximityRange)
+  proximityRange = "40vh", // Use viewport-relative units instead of fixed pixels
+}: CursorCardsContainerProps & { proximityRange?: string }) {
+  // Convert proximityRange to pixels based on viewport height
+  const proximityRangePx = typeof window !== 'undefined' 
+    ? (parseInt(proximityRange) / 100) * window.innerHeight 
+    : 400;
+
+  const { wrapperRef, mouseState } = useMousePosition(proximityRangePx)
 
   const enhancedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child) && child.type === CursorCard) {
@@ -151,7 +157,7 @@ export function CursorCardsContainer({
 export function CursorCard({
   children,
   className,
-  illuminationRadius = 200,
+  illuminationRadius = "20vh", // Use viewport-relative units
   illuminationColor = "#FFFFFF10",
   illuminationOpacity = 0.8,
   primaryHue = "#93C5FD",
@@ -162,16 +168,24 @@ export function CursorCard({
   isWithinRange = false,
 }: InternalCursorCardProps) {
   const elementRef = useRef<HTMLDivElement>(null)
+  
+  // Convert illuminationRadius to pixels based on viewport height when needed
+  const illuminationRadiusPx = typeof window !== 'undefined' && typeof illuminationRadius === 'string'
+    ? (parseInt(illuminationRadius) / 100) * window.innerHeight
+    : typeof illuminationRadius === 'number' 
+      ? illuminationRadius 
+      : 200;
+
   const { localMouseX, localMouseY, isCardActive } = useCardActivation(
     elementRef,
     globalMouseX,
     globalMouseY,
     isWithinRange,
-    illuminationRadius
+    illuminationRadiusPx
   )
 
   const gradientBackground = useMotionTemplate`
-    radial-gradient(${illuminationRadius}px circle at ${localMouseX}px ${localMouseY}px,
+    radial-gradient(min(${illuminationRadiusPx}px, 30%) circle at ${localMouseX}px ${localMouseY}px,
     ${primaryHue}, 
     ${secondaryHue},
     ${borderColor} 100%
@@ -179,7 +193,7 @@ export function CursorCard({
   `
 
   const illuminationBackground = useMotionTemplate`
-    radial-gradient(${illuminationRadius}px circle at ${localMouseX}px ${localMouseY}px, 
+    radial-gradient(min(${illuminationRadiusPx}px, 30%) circle at ${localMouseX}px ${localMouseY}px, 
     ${illuminationColor}, transparent 100%)
   `
 

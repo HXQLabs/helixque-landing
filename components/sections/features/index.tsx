@@ -277,27 +277,35 @@ const COUNTRY_FLAGS = [
   { flag: "🇿🇦", name: "South Africa" },
 ];
 
-function SemiCircleOrbit({ radius, centerX, centerY, count, iconSize, flags, isInner = false }: any) {
+function SemiCircleOrbit({ radiusPercent = 40, centerPercent = { x: 50, y: 60 }, count = 6, iconSize = 32, flags = [], isInner = false }: any) {
   return (
     <>
-      {/* Orbit flags */}
+      {/* Orbit flags - position using percentage placement relative to parent */}
       {Array.from({ length: count }).map((_, index) => {
-        const angle = (index / (count - 1)) * 180;
-        const x = radius * Math.cos((angle * Math.PI) / 180);
-        const y = radius * Math.sin((angle * Math.PI) / 180);
+        const angle = (index / (count - 1)) * 180; // degrees across semicircle
+        // compute offsets as percentages of container width/height using trig
+        const rad = (angle * Math.PI) / 180;
+        const rx = Math.cos(rad) * (radiusPercent / 100);
+        const ry = Math.sin(rad) * (radiusPercent / 100);
         const flagData = flags[index % flags.length];
+
+        // left: centerPercent.x +/- rx * 100%
+        const leftPercent = centerPercent.x + rx * 100;
+        const topPercent = centerPercent.y - ry * 100;
 
         return (
           <div
             key={`${isInner ? 'inner' : 'outer'}-${index}`}
             className="absolute flex flex-col items-center"
             style={{
-              left: `${centerX + x - iconSize / 2}px`,
-              top: `${centerY - y - iconSize / 2}px`,
+              left: `calc(${leftPercent}% - ${iconSize / 2}px)`,
+              top: `calc(${topPercent}% - ${iconSize / 2}px)`,
               zIndex: 5,
+              width: `${iconSize}px`,
+              height: `${iconSize}px`,
             }}
           >
-            <div className="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center transition-transform hover:scale-110">
+            <div className="w-full h-full rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center transition-transform hover:scale-110">
               <span className="text-lg">{flagData.flag}</span>
             </div>
           </div>
@@ -318,49 +326,38 @@ const SmartMatchingVisualization = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const baseWidth = Math.min(280, 280); // Fixed size for card
-  const centerX = baseWidth / 2;
-  const centerY = baseWidth * 0.6; // Moved down for better positioning
-
+  // Use responsive sizing based on parent container width.
+  // centerX/centerY will be calculated in percent in SemiCircleOrbit via CSS transforms.
   const iconSize = 32;
 
   return (
     <div className="flex-1 relative overflow-hidden rounded-lg min-h-[200px]">
-      <div className="relative w-full h-full">
-        <div
-          className="relative mx-auto max-w-full"
-          style={{ width: baseWidth, height: baseWidth * 0.7 }}
-        >
-          {/* Inner orbit */}
+      <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-[85%] max-w-[420px] aspect-[10/7]">
+          {/* Inner orbit: render flags positioned with percentage transforms */}
           <SemiCircleOrbit
-            radius={baseWidth * 0.32}
-            centerX={centerX}
-            centerY={centerY}
+            radiusPercent={32}
+            centerPercent={{ x: 50, y: 60 }}
             count={6}
             iconSize={iconSize}
             flags={COUNTRY_FLAGS.slice(0, 6)}
             isInner={true}
           />
-          
+
           {/* Outer orbit */}
           <SemiCircleOrbit
-            radius={baseWidth * 0.54}
-            centerX={centerX}
-            centerY={centerY}
+            radiusPercent={54}
+            centerPercent={{ x: 50, y: 60 }}
             count={8}
             iconSize={iconSize + 4}
             flags={COUNTRY_FLAGS.slice(6, 14)}
             isInner={false}
           />
-        </div>
-        
-        {/* Bottom Center Helixque Logo */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
-          <img 
-            src="/logo.svg" 
-            alt="HelixQue" 
-            className="h-16 w-16 object-contain"
-          />
+
+          {/* Bottom Center Helixque Logo */}
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10">
+            <img src="/logo.svg" alt="HelixQue" className="h-12 w-12 object-contain" />
+          </div>
         </div>
       </div>
     </div>

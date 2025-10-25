@@ -40,13 +40,13 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
         alt="HelixQue Logo" 
         width={20} 
         height={20} 
-        className="h-5 w-auto"
+        className="h-4 sm:h-5 w-auto"
       />
       <div className="relative">
-        <span className={`${showFullLogo ? 'block' : 'hidden sm:block'} font-heading text-lg leading-none font-semibold`}>HelixQue</span>
+        <span className={`${showFullLogo ? 'block' : 'hidden sm:block'} font-heading text-base sm:text-lg leading-none font-semibold`}>HelixQue</span>
         <Badge
           variant="secondary" 
-          className={`${showFullLogo ? 'block' : 'hidden sm:block'} absolute -top-1 -right-1 translate-x-full text-[8px] px-0.5 py-0 h-auto`}
+          className={`${showFullLogo ? 'block' : 'hidden sm:block'} absolute -top-1 -right-1 translate-x-full text-[7px] sm:text-[8px] px-0.5 py-0 h-auto`}
         >
           Beta
         </Badge>
@@ -66,7 +66,7 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
       className
     )}>
       <div className="w-full">
-        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4">
+        <div className="mx-auto flex h-[3.5rem] sm:h-16 w-full max-w-7xl items-center justify-between px-2 sm:px-4">
           {/* Desktop Logo */}
           <div className="hidden md:flex">
             <Link href="/" className="transition-opacity duration-200 hover:opacity-80">
@@ -79,14 +79,14 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
             className="absolute left-1/2 hidden -translate-x-1/2 transform md:flex" 
             aria-label="Main navigation"
           >
-            <ul className="border-border/70 relative flex w-fit rounded-full border p-1 px-1">
+            <ul className="border-border/70 relative flex w-fit rounded-full border p-0.5 sm:p-1 px-0.5 sm:px-1">
               {navigationItems.map((item, index) => (
                 <li 
                   key={item.href}
                   ref={(el) => {
                     navItemsRef.current[index] = el;
                   }}
-                  className="hover:text-foreground text-muted-foreground z-10 block cursor-pointer px-3 py-1.5 text-sm font-medium tracking-tight transition-all duration-300 ease-out"
+                  className="hover:text-foreground text-muted-foreground z-10 block cursor-pointer px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium tracking-tight transition-all duration-300 ease-out"
                   onMouseEnter={() => {
                     setHoveredIndex(index);
                     updatePillPosition(index);
@@ -208,7 +208,7 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
               id="mobile-menu"
               aria-modal="true"
               aria-label="Mobile menu"
-              className="absolute top-full left-0 right-0 z-[60] bg-background md:rounded-none rounded-none md:mx-0 mx-0 md:hidden"
+              className="absolute top-[3.5rem] sm:top-16 left-0 right-0 z-[60] bg-background/95 backdrop-blur-sm border-t md:rounded-none rounded-none md:mx-0 mx-0 md:hidden"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}

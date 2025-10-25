@@ -100,7 +100,7 @@ export const HeroSection = () => {
           </p>
         </div>
         <div
-          className="after:border-primary/20 after:bg-secondary pointer-events-none absolute top-[340px] h-[400px] w-full max-w-5xl overflow-hidden mask-[radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-y-0 before:-right-[200%] before:-left-[200%] before:h-[200%] before:bg-[radial-gradient(circle_at_bottom_center,var(--primary),transparent_90%)] before:opacity-25 after:absolute after:top-1/5 after:-left-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] after:border-t sm:top-[300px] sm:after:top-1/2"
+          className="pointer-events-none relative w-full max-w-5xl mx-auto mt-8 sm:mt-12 lg:mt-20 overflow-hidden mask-[radial-gradient(50%_50%,white,transparent)]"
           aria-hidden="true"
         >
           <Particles 
