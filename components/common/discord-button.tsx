@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "motion/react"
+// import { motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/utils/icons"

@@ -222,7 +222,7 @@ export default function HelixQueHeader({ className }: HelixQueHeaderProps) {
               {/* Navigation Content */}
               <div className="px-3 py-4">
                 <div className="flex flex-col">
-                  {navigationItems.map((item, index) => (
+                  {navigationItems.map((item) => (
                     <Link 
                       key={item.href}
                       href={item.href}

@@ -219,12 +219,15 @@ export function Particles({
     },
   }
 
-  const deepMerge = (target: any, source: any) => {
+  const deepMerge = (target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown> => {
     const output = { ...target }
     if (source) {
       Object.keys(source).forEach((key) => {
         if (source[key] instanceof Object && key in target) {
-          output[key] = deepMerge(target[key], source[key])
+          output[key] = deepMerge(
+              target[key] as Record<string, unknown>,
+              source[key] as Record<string, unknown>
+          )
         } else {
           output[key] = source[key]
         }
