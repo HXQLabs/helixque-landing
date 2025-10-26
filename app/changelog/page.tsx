@@ -13,13 +13,19 @@ interface ChangelogDoc {
   }
 }
 
+// Safe local-date parsing for YYYY-MM-DD strings
+const parseLocalDate = (dateString: string) => {
+  const [year, month, day] = dateString.split("-").map(Number);
+  return new Date(year, (month || 1) - 1, day || 1);
+};
+
 export default function ChangelogPage() {
   // Cast to the correct type and sort
   const changelogDocs = (docs as unknown as ChangelogDoc[]) || []
   
   const sortedChangelogs = [...changelogDocs].sort((a, b) => {
-    const dateA = new Date(a.date).getTime()
-    const dateB = new Date(b.date).getTime()
+    const dateA = parseLocalDate(a.date).getTime()
+    const dateB = parseLocalDate(b.date).getTime()
     return dateB - dateA
   })
 
@@ -53,7 +59,7 @@ export default function ChangelogPage() {
           <div className="relative">
             {sortedChangelogs.map((changelog, index) => {
               const MDX = changelog.body
-              const date = new Date(changelog.date)
+              const date = parseLocalDate(changelog.date)
               const formattedDate = formatDate(date)
 
               return (
@@ -67,7 +73,9 @@ export default function ChangelogPage() {
                     {/* Left side - Date and Version */}
                     <div className="md:w-48 flex-shrink-0">
                       <div className="md:sticky md:top-24 pb-10">
-                        <time className="text-sm font-medium text-muted-foreground block mb-3">
+                        <time 
+                        dateTime={changelog.date}
+                        className="text-sm font-medium text-muted-foreground block mb-3">
                           {formattedDate}
                         </time>
 

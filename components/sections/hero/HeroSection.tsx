@@ -63,7 +63,7 @@ export const HeroSection = ({ announcementComponent }: HeroSectionProps) => {
                 href="https://helixque.netlify.app"
                 target="_blank"
                 aria-label="Get started with Helixque"
-                className="from-primary/90 to-primary durration-300 text-primary-foreground flex h-10 items-center rounded-3xl bg-linear-to-t px-6 text-sm font-medium shadow-[inset_0_1px_0_0_#FFFFFF20] transition-colors"
+                className="from-primary/90 to-primary duration-300 text-primary-foreground flex h-10 items-center rounded-3xl bg-linear-to-t px-6 text-sm font-medium shadow-[inset_0_1px_0_0_#FFFFFF20] transition-colors"
               >
                 Get Started for Free
               </Link>
