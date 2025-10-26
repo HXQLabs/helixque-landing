@@ -408,3 +408,22 @@
   font-weight: 400;
   font-style: italic;
 }
+
+
+/* Announcement section highlight effect */
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    background-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+}
+
+.highlight-pulse {
+  animation: highlightPulse 2s ease-in-out;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}

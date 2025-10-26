@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "docs:build": "fumadocs-mdx",
+    "dev": "npm run docs:build && next dev --turbopack",
+    "build": "npm run docs:build && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "echo 'Fumadocs source generation moved to dev/build scripts.'"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
@@ -30,7 +31,7 @@
     "dotted-map": "^2.2.3",
     "framer-motion": "^12.23.12",
     "fumadocs-core": "^15.7.11",
-    "fumadocs-mdx": "^11.9.1",
+    "fumadocs-mdx": "^13.0.1",
     "fumadocs-ui": "^15.7.11",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.544.0",
