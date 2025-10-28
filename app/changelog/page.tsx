@@ -1,33 +1,12 @@
-import { docs, meta } from "@/.source"
-import { loader } from "fumadocs-core/source"
-import { createMDXSource } from "fumadocs-mdx"
+import { docs } from "@/.source"
 import { useMemo } from "react"
 import { formatDate } from "@/lib/utils"
 
-const source = loader({
-  baseUrl: "/docs",
-  source: createMDXSource(docs, meta),
-})
-
-interface ChangelogData {
-  title: string
-  date: string
-  version?: string
-  tags?: string[]
-  body: React.ComponentType
-}
-
-interface ChangelogPage {
-  url: string
-  data: ChangelogData
-}
-
 export default function ChangelogPage() {
   const sortedChangelogs = useMemo(() => {
-    const allPages = source.getPages() as ChangelogPage[]
-    return allPages.sort((a, b) => {
-      const dateA = new Date(a.data.date).getTime()
-      const dateB = new Date(b.data.date).getTime()
+    return docs.sort((a, b) => {
+      const dateA = new Date(a.date).getTime()
+      const dateB = new Date(b.date).getTime()
       return dateB - dateA
     })
   }, [])
@@ -52,12 +31,12 @@ export default function ChangelogPage() {
       <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-16">
         <div className="relative">
           {sortedChangelogs.map((changelog) => {
-            const MDX = changelog.data.body
-            const date = new Date(changelog.data.date)
+            const MDX = changelog.body
+            const date = new Date(changelog.date)
             const formattedDate = formatDate(date)
 
             return (
-              <div key={changelog.url} className="relative">
+              <div key={changelog.url || `changelog-${changelog.title}`} className="relative">
                 <div className="flex flex-col md:flex-row gap-y-6">
                   <div className="md:w-48 flex-shrink-0">
                     <div className="md:sticky md:top-24 pb-10">
@@ -65,9 +44,9 @@ export default function ChangelogPage() {
                         {formattedDate}
                       </time>
 
-                      {changelog.data.version && (
+                      {changelog.version && (
                         <div className="inline-flex relative z-10 items-center justify-center w-10 h-10 text-foreground border border-border rounded-lg text-sm font-bold">
-                          {changelog.data.version}
+                          {changelog.version}
                         </div>
                       )}
                     </div>
@@ -84,14 +63,14 @@ export default function ChangelogPage() {
                     <div className="space-y-6">
                       <div className="relative z-10 flex flex-col gap-2">
                         <h2 className="text-2xl font-semibold tracking-tight text-balance">
-                          {changelog.data.title}
+                          {changelog.title}
                         </h2>
 
                         {/* Tags */}
-                        {changelog.data.tags &&
-                          changelog.data.tags.length > 0 && (
+                        {changelog.tags &&
+                          changelog.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">
-                              {changelog.data.tags.map((tag: string) => (
+                              {changelog.tags.map((tag: string) => (
                                 <span
                                   key={tag}
                                   className="h-6 w-fit px-2 text-xs font-medium bg-muted text-muted-foreground rounded-full border flex items-center justify-center"

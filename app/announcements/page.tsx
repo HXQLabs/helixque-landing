@@ -1,26 +1,6 @@
-import { announcementDocs, announcementMeta } from "@/.source"
-import { loader } from "fumadocs-core/source"
-import { createMDXSource } from "fumadocs-mdx"
+import { announcementDocs } from "@/.source"
 import { useMemo } from "react"
 import { formatDate } from "@/lib/utils"
-
-const source = loader({
-    baseUrl: "/announcements",
-    source: createMDXSource(announcementDocs, announcementMeta),
-})
-
-interface AnnouncementData {
-    title: string
-    date: string
-    priority?: "high" | "medium" | "low"
-    tags?: string[]
-    body: React.ComponentType
-}
-
-interface AnnouncementPage {
-    url: string
-    data: AnnouncementData
-}
 
 const getPriorityColor = (priority?: string) => {
     switch (priority) {
@@ -37,10 +17,9 @@ const getPriorityColor = (priority?: string) => {
 
 export default function AnnouncementsPage() {
     const sortedAnnouncements = useMemo(() => {
-        const allPages = source.getPages() as AnnouncementPage[]
-        return allPages.sort((a, b) => {
-            const dateA = new Date(a.data.date).getTime()
-            const dateB = new Date(b.data.date).getTime()
+        return announcementDocs.sort((a, b) => {
+            const dateA = new Date(a.date).getTime()
+            const dateB = new Date(b.date).getTime()
             return dateB - dateA
         })
     }, [])
@@ -64,14 +43,13 @@ export default function AnnouncementsPage() {
             {/* Timeline */}
             <div className="max-w-5xl mx-auto px-6 lg:px-10 pb-20">
                 <div className="relative">
-                    {sortedAnnouncements.map((announcement, index) => {
-                        const MDX = announcement.data.body
-                        const date = new Date(announcement.data.date)
+                    {sortedAnnouncements.map((announcement) => {
+                        const MDX = announcement.body
+                        const date = new Date(announcement.date)
                         const formattedDate = formatDate(date)
-                        const isLast = index === sortedAnnouncements.length - 1
 
                         return (
-                            <div key={announcement.url} className="relative mb-16 last:mb-0">
+                            <div key={`announcement-${announcement.title}`} className="relative mb-16 last:mb-0">
                                 <div className="flex flex-col md:flex-row gap-y-6">
                                     {/* Left side - Date and Priority */}
                                     <div className="md:w-48 flex-shrink-0">
@@ -80,9 +58,9 @@ export default function AnnouncementsPage() {
                                                 {formattedDate}
                                             </time>
 
-                                            {announcement.data.priority && (
-                                                <div className={`inline-flex relative z-10 items-center justify-center px-3 py-1 text-xs font-medium rounded-full ${getPriorityColor(announcement.data.priority)}`}>
-                                                    {announcement.data.priority.toUpperCase()}
+                                            {announcement.priority && (
+                                                <div className={`inline-flex relative z-10 items-center justify-center px-3 py-1 text-xs font-medium rounded-full ${getPriorityColor(announcement.priority)}`}>
+                                                    {announcement.priority.toUpperCase()}
                                                 </div>
                                             )}
                                         </div>
@@ -99,14 +77,14 @@ export default function AnnouncementsPage() {
                                         <div className="space-y-8 md:space-y-10">
                                             <div className="relative z-10 flex flex-col gap-2">
                                                 <h2 className="text-2xl font-semibold tracking-tight text-balance">
-                                                    {announcement.data.title}
+                                                    {announcement.title}
                                                 </h2>
 
                                                 {/* Tags */}
-                                                {announcement.data.tags &&
-                                                    announcement.data.tags.length > 0 && (
+                                                {announcement.tags &&
+                                                    announcement.tags.length > 0 && (
                                                         <div className="flex flex-wrap gap-2">
-                                                            {announcement.data.tags.map((tag: string) => (
+                                                            {announcement.tags.map((tag: string) => (
                                                                 <span
                                                                     key={tag}
                                                                     className="h-6 w-fit px-2 text-xs font-medium bg-muted text-muted-foreground rounded-full border flex items-center justify-center"
