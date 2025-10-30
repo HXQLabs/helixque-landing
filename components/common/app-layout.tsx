@@ -7,8 +7,9 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="relative flex min-h-screen w-full flex-col">
-      {/* Sticky Banner */}
+    <div className="relative min-h-screen w-full">
+      <OriginBannerCustomizable className="bg-gradient-to-b from-blue-500 to-blue-600 text-foreground" />
+       {/* Sticky Banner */}
       {/* <StickyBanner className="bg-gradient-to-b from-blue-500 to-blue-600" hideOnScroll={true}>
         <p className="flex flex-wrap gap-1 items-center justify-center px-2 sm:px-4 leading-tight text-center text-white dark:text-gray-100 drop-shadow-md">
           <picture>
@@ -37,16 +38,21 @@ export function AppLayout({ children }: AppLayoutProps) {
         </p>
       </StickyBanner> */}
       {/* <OriginBanner /> */}
-      <OriginBannerCustomizable className="bg-gradient-to-b from-blue-500 to-blue-600 text-foreground" />
       {/* Fixed Header positioned below the sticky banner */}
       <div className="sticky top-0 z-50">
-        <HelixQueHeader />
+        <div className="mx-auto max-w-[2000px] px-4 sm:px-6 lg:px-8 2xl:px-16">
+          <HelixQueHeader />
+        </div>
       </div>
 
-      {/* Main content - no top padding needed as content flows naturally */}
-      <main className="relative z-10 flex-1">
-        {children}
-      </main>
+      {/* Main content wrapper with maximum width constraint */}
+      <div className="mx-auto max-w-[2000px] px-4 sm:px-6 lg:px-8 2xl:px-16">
+        <main className="relative z-10 flex-1">
+          <div className="mx-auto max-w-[1800px]">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
