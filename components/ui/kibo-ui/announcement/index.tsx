@@ -14,8 +14,12 @@ export const Announcement = ({
 }: AnnouncementProps) => (
   <Badge
     className={cn(
-      "group max-w-full gap-2 rounded-full bg-background px-3 py-0.5 font-medium transition-all",
-      themed && "announcement-themed border-foreground/5",
+      "group relative max-w-full gap-2 rounded-full px-3 py-0.5 font-medium transition-all duration-300",
+      "shadow-sm hover:shadow-md hover:scale-[1.015]",
+      "bg-gradient-to-r from-background via-background/90 to-background",
+      themed &&
+        "announcement-themed border-foreground/10 bg-gradient-to-r from-primary/10 via-background to-secondary/10",
+      "backdrop-blur-sm border border-foreground/10",
       className
     )}
     variant={variant}
@@ -31,8 +35,9 @@ export const AnnouncementTag = ({
 }: AnnouncementTagProps) => (
   <div
     className={cn(
-      "-ml-2.5 shrink-0 truncate rounded-full bg-foreground/5 px-2.5 py-1 text-xs",
-      "group-[.announcement-themed]:bg-background/60",
+      "-ml-2.5 shrink-0 truncate rounded-full bg-foreground/10 px-2.5 py-1 text-xs font-medium transition-colors duration-200",
+      "text-foreground/80 group-hover:text-foreground",
+      "group-[.announcement-themed]:bg-background/60 group-[.announcement-themed]:text-primary/80",
       className
     )}
     {...props}
@@ -46,7 +51,11 @@ export const AnnouncementTitle = ({
   ...props
 }: AnnouncementTitleProps) => (
   <div
-    className={cn("flex items-center gap-1 truncate py-1", className)}
+    className={cn(
+      "flex items-center gap-1 truncate py-1 text-sm font-medium transition-colors duration-200",
+      "group-hover:text-primary",
+      className
+    )}
     {...props}
   />
 );

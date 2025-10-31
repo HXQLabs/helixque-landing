@@ -20,15 +20,37 @@ export const HeroSection = () => {
         <div className="flex justify-center pb-8">
           <Announcement>
             <AnnouncementTag>Now Live</AnnouncementTag>
+
             <Link href="/changelog" passHref>
-              <AnnouncementTitle className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">
-                <p className="group-hover:underline underline-offset-4 flex flex-wrap gap-1 items-center">Check out our latest updates</p>
-                <ArrowUpRightIcon className="shrink-0 text-muted-foreground" size={16} />
+              <AnnouncementTitle
+                className="flex items-center gap-1 cursor-pointer transition-colors hover:text-primary"
+              >
+                <p className="flex flex-wrap gap-1 items-center underline-offset-4 hover:underline">
+                  Check latest updates
+                </p>
+                <ArrowUpRightIcon
+                  className="shrink-0 text-muted-foreground transition-transform duration-200 hover:translate-x-0.5"
+                  size={16}
+                />
+              </AnnouncementTitle>
+            </Link>
+
+            <Link href="/announcements" passHref>
+              <AnnouncementTitle
+                className="flex items-center gap-1 cursor-pointer transition-colors hover:text-primary"
+              >
+                <p className="flex flex-wrap gap-1 items-center underline-offset-4 hover:underline">
+                  Announcements
+                </p>
+                <ArrowUpRightIcon
+                  className="shrink-0 text-muted-foreground transition-transform duration-200 hover:translate-x-0.5"
+                  size={16}
+                />
               </AnnouncementTitle>
             </Link>
           </Announcement>
-
         </div>
+
         <div className="relative z-1 mx-auto max-w-3xl text-center">
           <h1 className="leading-tighter font-gilroy max-w-2xl mx-auto bg-gradient-to-b from-gray-900/90 via-gray-800 to-gray-700/80 dark:from-white/80 dark:via-white dark:to-white/60 bg-clip-text text-4xl sm:text-5xl md:text-5xl font-semibold tracking-tight text-pretty text-transparent lg:leading-[1.1] xl:text-6xl/[4rem] xl:tracking-tighter flex flex-col items-center space-y-2">
             <span>Professional networking for</span>
