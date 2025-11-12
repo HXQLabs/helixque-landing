@@ -339,6 +339,55 @@
     @apply bg-background text-foreground;
   }
 
+  /* Widescreen optimizations */
+  @media (min-width: 1920px) {
+    html {
+      font-size: 18px; /* Slightly larger base font size for better readability */
+    }
+    
+    /* Improved spacing for wide screens */
+    .container {
+      @apply max-w-[1800px] mx-auto;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 20px;
+    }
+    
+    /* Additional spacing adjustments for 4K displays */
+    .container {
+      @apply max-w-[2000px];
+    }
+
+    /* Enhanced spacing for ultra-wide displays */
+    .section-spacing {
+      @apply py-20;
+    }
+    
+    /* Improved content width for better readability */
+    .content-container {
+      @apply max-w-[1600px] mx-auto;
+    }
+    
+    /* Larger paragraph spacing */
+    p {
+      @apply leading-relaxed;
+    }
+  }
+  
+  /* Ultra-wide specific optimizations */
+  @media (min-width: 3440px) {
+    html {
+      font-size: 22px;
+    }
+    
+    .section-spacing {
+      @apply py-24;
+    }
+  }
+
   .shiki > div > button {
     border-top-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;

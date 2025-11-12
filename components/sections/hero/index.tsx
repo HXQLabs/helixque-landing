@@ -14,7 +14,7 @@ export const HeroSection = () => {
   return (
     <section
       aria-label="Hero banner"
-      className="bg-background relative z-1 container mx-auto w-full overflow-hidden px-6 lg:px-8"
+      className="bg-background relative z-1 w-full overflow-hidden px-6 lg:px-8 xl:px-12 2xl:px-16"
     >
       <div className="mx-auto max-w-5xl py-16 sm:py-28">
         <div className="flex justify-center pb-8">
